@@ -21,7 +21,7 @@ namespace DentalSoft.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base( "data source=DESKTOP-GUTUTCO\\SQLEXPRESS;initial catalog=dbdentalsoft;user id=admin;password=123456;MultipleActiveResultSets=True;App=EntityFramework&quot;", throwIfV1Schema: false)
         {
         }
 

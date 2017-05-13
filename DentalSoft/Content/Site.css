@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,3 +22,159 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/**
+    navbar
+*/
+
+.navbar {
+    margin-bottom: 0px !important; 
+    border: none;
+    
+}
+
+.navbar-inverse {
+    padding-bottom: 0px;
+    background-color: #3c8dbc;
+
+
+}
+
+.logo{
+    text-align: center;
+    color: white;
+}
+
+.col-md-3{
+    background-color: #367fa9;
+}
+
+
+p{
+    color: white;
+}
+
+.navselect{
+    color: white !important;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+    color: white !important;
+    border-top-color: white!important;
+    border-bottom-color: white !important;
+}
+
+
+/**
+    navbar
+*/
+
+/*
+    user pane
+*/
+
+.user-panel{
+    position: relative;
+    width: 100%;
+    padding: 0px;
+    overflow: hidden;
+    height:90px;
+    margin-top:5px;
+
+}
+.image-left{
+    float: left !important;
+    padding: 5px;
+}
+
+.image-left img{
+    max-width: 100%;
+    max-width: 50px;
+}
+.image-circle{
+    border-radius: 50%;
+}
+
+.image-right{
+    float: left;
+    padding: 7px 5px 5px 15px;
+}
+.image-right p{
+    font-weight: 600;
+
+}
+/*
+   fin user pane
+*/
+
+
+/* 
+    LU
+
+*/
+
+.header-li{
+    color: #4b646f;
+    background: #1a2226;
+    width:100%;
+    pointer-events:none;
+}
+
+.col-md-2.sidenav {
+    position: relative;
+    min-height: 1px;
+    padding-right: 0px;
+    padding-left: 15px;
+}
+
+
+/*
+    Fin LU
+
+*/
+
+
+
+
+
+
+/**
+
+
+*/
+
+.row.content {
+    height: 1500px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+    
+    /* Set gray background color and 100% height */
+.sidenav {
+     background-color: #222d32;
+     height: 100%;
+     margin-left: 0px;
+     
+}
+    
+    /* Set black background color, white text and some padding */
+footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+}
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+
+      .row.content {height: auto;} 
+    }
+
