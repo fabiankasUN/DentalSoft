@@ -1,60 +1,169 @@
 ﻿<!DOCTYPE html>
-<html>
+<html >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
-
+    
+    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.5/angular-route.js"></script>     
+    <script src="~/App/App.js"></script>
+    <script src="~/App/Contollers/AccountControllerJS.js"></script>
+    <script src="~/App/Contollers/OdontogramControllerJS.js"></script>
+
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-   
+
+    <script>
+        $(document).ready(function () {
+            $('a.tree-toggler').click(function () {
+                $(this).parent().children('ul.tree').toggle(400);
+            });
+        });
+    </script>
+
 </head>
 
-<body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="col-md-2">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <span class="logo">
-                            DentalSoft
-                        </span>
-                       
-                    </a>
-                        
+<body ng-app="app">
+    @if ( Request.IsAuthenticated ) {
+       
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="col-md-2">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            <span class="logo">
+                                DentalSoft
+                                
+                            </span>
+
+                        </a>
+
+                    </div>
                 </div>
+                <div class="col-md-10">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Inicio</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Usuarios <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Pacientes</a></li>
+                                <li><a href="#">Medicos</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">no se</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" class="navselect">
+                            <span class="glyphicon glyphicon-user">
+                            </span>
+                                @User.Identity.Name
+                           </a>
+                        </li>
+                        <li><a href="#" ng-click="LogOff()" class="navselect"><span class="glyphicon glyphicon-log-in"></span> 
+                            Salir
+                            
+                            </a></li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="col-md-10">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Inicio</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pacientes <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Page 1-1</a></li>
-                            <li><a href="#">Page 1-2</a></li>
-                            <li><a href="#">Page 1-3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Bobis</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" class="navselect"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                    </li>
-                    <li><a href="#" class="navselect"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row content">
+                <div class="col-md-2 sidenav">
+                    <div class="user-panel">
+                        <div class="image-left">
+                            <img src="~/Images/lili.jpg" class="img-circle">
+                        </div>
+                        <div class="image-right">
+                            <p>Liliana R.</p>
+                            <p>odontologia</p>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-list">                      
+                        <li>
+                            <a href="#section1" class="header-li">
+                                Menu Navegacion
+                            </a>
+                        </li>
+                        
+                        <li>
+
+
+                        <a href="#section1" class="navselect a">
+                            <span class="glyphicon glyphicon-calendar">  Agendamiento
+                            </span>
+                        </a></li>
+                        <li>
+                            <a href="#section2" class="tree-toggler nav-header navselect a">
+                                <div class="glyphicon glyphicon-edit"> Consultar Citas</div>
+                            </a>
+                            <ul class="nav nav-list tree">
+                                <li>
+                                    <a href="#section1" class="subselect a">
+                                        <span class="glyphicon glyphicon-calendar">
+                                            Futuras
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#section1" class="subselect a">
+                                        <span class="glyphicon glyphicon-calendar">
+                                            Pasadas
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        
+                        </li>
+                        <li><a href="#section3" class="navselect a">
+                                <div class="glyphicon glyphicon-phone-alt">  Sala de espera</div>  </a></li>
+                        <li><a href="#section3" class="navselect a">
+                                <div class="glyphicon glyphicon-edit">  Odontograma</div></a></li>
+                        <li>
+                            <a href="#section3" class="navselect a">
+                                <div class="glyphicon glyphicon-edit">  Facturacion</div>
+                            </a>
+                        </li>
+                        <li><a href="#section1" class="header-li">Buscador</a></li>
+                    </ul><br>
+                    @*<div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Blog..">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>*@
+                </div>
+                <div class="col-md-9">
+                    @RenderBody( )
+                </div>
+
             </div>
-            
         </div>
-    </nav>
+
+        <footer class="container-fluid">
+            <p>Footer Text</p>
+        </footer>
+
+    } else {
+        @RenderBody( )
+    }
+
 
 
     @*<div class="container ">*@
-        @RenderBody()
-        <hr />
+       @* @RenderBody()*@
+        @*<hr />*@
         @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>*@

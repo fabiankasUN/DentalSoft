@@ -2,52 +2,55 @@
     ViewBag.Title = "Home Page";
 }
 
-<link href="~/Content/Site.css" rel="stylesheet" />
+@Utils.check_Permissions( "home" )
 
 
-<body>
-    <div class="container-fluid">
-        <div class="row content">
-            <div class="col-md-2 sidenav">
-                <div class="user-panel">
-                    <div class="image-left">
-                        <img src="~/Images/lili.jpg" class="img-circle">
-                    </div>
-                    <div class="image-right">
-                        <p>Liliana R.</p>
-                        <p>odontologia</p>
-                        
-                    </div>
-                </div>
+<body ng-controller="odontogramControllerjs" ng-init="getData()">
+        
+        @*<div class="container-fluid bg-1 text-center">*@
 
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#section1" class="header-li">MENU NAVEGACION</a></li>
-                    <li><a href="#section1" class="navselect">Home</a></li>
-                    <li><a href="#section2" class="navselect">Friends</a></li>
-                    <li><a href="#section3" class="navselect">Family</a></li>
-                    <li><a href="#section3" class="navselect">Photos</a></li>
-                </ul><br>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Blog..">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
-            </div>
+            @*<img src="~/Images/fondo3.jpg" alt="Bird">*@
 
-            <div class="col-md-9">
-                <div class="container-fluid bg-1 text-center">
-                    <img src="~/Images/fondo3.jpg" alt="Bird">
-                    <h3>I'm an adventurer</h3>
-                </div>
-            </div>
-    </div>
-
-    <footer class="container-fluid">
-        <p>Footer Text</p>
-    </footer>
+           @* <h1> {{data}}</h1>*@
+            
+            <span ng-repeat="x in data">
+                <my-teeth info="x"></my-teeth>
+                 
+            </span>
+            <svg width="96px" viewBox="0 -2 100 100" version="1.1" class="tooth_all" id="_tooth_18">
+                <title>18</title>
+                <g ng-click="getData()" class="tooth_part tooth_root tooth_root_upper">
+                    <title>Cervical</title>
+                    <path d="M 48,0.5 A 47.5,47.5 0 0 0 14.389,14.48 L 25.696,25.787 A 31.5,31.5 0 0 1 48,16.5 31.5,31.5 0 0 1 70.309,25.785 L 81.613,14.479 A 47.5,47.5 0 0 0 42,0.5 Z" class="tooth_origin_element"></path>
+                </g>
+                
+                <g class="tooth_part tooth_root tooth_root_lower">
+                    <title>Cervical</title>
+                    <path d="M 70.311,70.205 A 31.5,31.5 0 0 1 48,79.5 31.5,31.5 0 0 1 25.686,70.209 L 14.379,81.516 A 47.5,47.5 0 0 0 48,95.5 47.5,47.5 0 0 0 81.617,81.514 L 70.311,70.205 Z" class="tooth_origin_element"></path>
+                </g>
+                <g class="tooth_part tooth_face tooth_face_lower">
+                    <title>Palatino</title>
+                    <path d="M 37.047,58.953 25.74,70.26 A 31.5,31.5 0 0 0 48,79.5 31.5,31.5 0 0 0 70.26,70.26 L 58.953,58.953 A 15.5,15.5 0 0 1 48,63.5 15.5,15.5 0 0 1 37.047,58.953 Z" class="tooth_origin_element"></path>
+                </g>
+                <g class="tooth_part tooth_face tooth_face_upper">
+                    <title>Vestibular</title>
+                    <path d="M 48,16.5 A 31.5,31.5 0 0 0 25.74,25.74 L 37.047,37.047 A 15.5,15.5 0 0 1 48,32.5 15.5,15.5 0 0 1 58.953,37.047 L 70.26,25.74 A 31.5,31.5 0 0 0 48,16.5 Z" class="tooth_origin_element"></path>
+                </g>
+                <g class="tooth_part tooth_face tooth_face_right">
+                    <title>Mesial</title>
+                    <path d="M 70.26,25.74 58.953,37.047 A 15.5,15.5 0 0 1 63.5,48 15.5,15.5 0 0 1 58.953,58.953 L 70.26,70.26 A 31.5,31.5 0 0 0 79.5,48 31.5,31.5 0 0 0 70.26,25.74 Z" class="tooth_origin_element"></path>
+                </g>
+                <g class="tooth_part tooth_face tooth_face_left">
+                    <title>Distal</title>
+                    <path d="M 25.74,25.74 A 31.5,31.5 0 0 0 16.5,48 31.5,31.5 0 0 0 25.74,70.26 L 37.047,58.953 A 15.5,15.5 0 0 1 32.5,48 15.5,15.5 0 0 1 37.047,37.047 L 25.74,25.74 Z" class="tooth_origin_element"></path>
+                </g>
+                <g class="tooth_part tooth_center">
+                    <title>Oclusal</title>
+                    <circle cy="48" cx="48" r="15.5" class="tooth_origin_element"></circle>
+                </g>
+            </svg>
+        @*</div>*@
+        
 
 </body>
 

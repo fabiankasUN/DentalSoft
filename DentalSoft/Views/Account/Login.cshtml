@@ -5,24 +5,26 @@
 }
 
 
+
 <body background="~/Images/fondo3.jpg"></body>
 
 
-
 <div class="container" >
+    <br />
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-body " >
-                   @using ( Html.BeginForm( "Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post ) ) {
+                   @using ( Html.BeginForm( "Login", "Account", new { ReturnUrl = "/Home/Index" }, FormMethod.Post ) ) {
                     @Html.AntiForgeryToken( )
+                    @Utils.check_Permissions("login");
                     <div class="row">
-                        <div class="col-md-1"></div>
+                        <div class="col-md-2"></div>
                         <div class="col-md-8">
                             <img height="190" src="~/Images/loginImage2.jpg">
                         </div>
-                        <div class="col-md-3"></div>
+                        
                     </div>
                     <hr />
                     <form>

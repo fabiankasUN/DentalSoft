@@ -1,0 +1,8 @@
+﻿@helper check_Permissions( string value ) {
+
+    if ( !Request.IsAuthenticated && value != "login" ) {
+        Response.Redirect( "~/Account/Login" );
+    } else if( Request.IsAuthenticated && value == "login" ) {
+        Response.Redirect( "~/Home/Index" );
+    }
+}
