@@ -387,7 +387,7 @@ namespace DentalSoft.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
+        [HttpGet]
 
         public ActionResult LogOff()
         {

@@ -65,10 +65,13 @@
                                 @User.Identity.Name
                            </a>
                         </li>
-                        <li><a href="#" ng-click="LogOff()" class="navselect"><span class="glyphicon glyphicon-log-in"></span> 
-                            Salir
-                            
-                            </a></li>
+                        <li>
+                            <a href="#" onclick="location.href='@Url.Action("LogOff", "Account")'" class="navselect">
+                                <span class="glyphicon glyphicon-log-in"></span> 
+                                Salir
+
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -144,7 +147,7 @@
                         </span>
                     </div>*@
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                     @RenderBody( )
                 </div>
 

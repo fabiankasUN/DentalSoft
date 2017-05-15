@@ -35,8 +35,11 @@ textarea {
 
 .navbar-inverse {
     padding-bottom: 0px;
-    background-color: #3c8dbc;
-
+    background-color: #3cbcab;
+    /*
+        #3cbcab
+    */
+    
 
 }
 
@@ -200,7 +203,20 @@ footer {
         height: auto;
         padding: 15px;
       }
-
       .row.content {height: auto;} 
     }
 
+
+
+
+
+    /*
+        Tooth
+
+    */
+
+svg .tooth_part {
+    stroke: #000;
+    fill: #fff;
+    stroke-width: 0.5px;
+}

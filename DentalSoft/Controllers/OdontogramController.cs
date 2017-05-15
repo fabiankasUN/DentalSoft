@@ -17,16 +17,27 @@ namespace DentalSoft.Controllers
         }
         public class Odontogram {
 
-            public Teeth [] tooth { get; set;}
+            public Teeth [] upperTeeth { get; set;}
+            public Teeth[] upperTemporalTeeth { get; set; }
+            public Teeth[] lowerTemporalTeeth { get; set; }
+            public Teeth[] lowerTeeth { get; set; }
             public Odontogram(){
-                tooth = new Teeth[8];
+                upperTeeth = new Teeth[16];
+                upperTemporalTeeth = new Teeth[10];
+                lowerTemporalTeeth = new Teeth[10];
+                lowerTeeth = new Teeth[16];
                 Random r = new Random( );
-                for ( int i= 0; i < 8; i++ ) {
+                for ( int i= 0; i < 16; i++ ) {
                     
                     int a = r.Next( 1, 10 );
                     int b = r.Next( 1, 10 );
                     int c = r.Next( 1, 10 );
-                    tooth[i] = new Teeth(a,b,c,a);
+                    upperTeeth[i] = new Teeth(a,b,c,a);
+                    lowerTeeth[i] = new Teeth( a, b, c, a );
+                    if ( i < 10 ) {
+                        upperTemporalTeeth[i] = new Teeth( a, b, c, a );
+                        lowerTemporalTeeth[i] = new Teeth( a, b, c, a );
+                    }
                     Debug.Write( a );
                 }
             }
@@ -44,7 +55,7 @@ namespace DentalSoft.Controllers
             }
 
             public string toString( ) {
-                return tooth[0].top+"";
+                return upperTeeth[0].top+"";
             }
         }
         //GET /Odontogram/GetOdontogram

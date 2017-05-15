@@ -1,21 +1,37 @@
 ﻿angular.module('app').controller('odontogramControllerjs',  function ($scope, $http, $location) {
 
 
+    $scope.testFn = function () {
+        alert("test complete");
+    }
+
+
     $scope.getData = function () {
         $http.get('/Odontogram/GetOdontogram')
         .then(function (response) {
-            $scope.data = response.data.tooth;
+            $scope.upperTeeth = response.data.upperTeeth;
+            $scope.upperTemporalTeeth = response.data.upperTemporalTeeth;
+            $scope.lowerTemporalTeeth = response.data.lowerTemporalTeeth;
+            $scope.lowerTeeth = response.data.lowerTeeth;
+            
         });
     };
 
 
-}).directive('myTeeth', function () {  
+}).directive('myTooth', function () {  
     return {
-        restrict: 'EA',
+        restrict: 'E',
         scope: {
-            myt: '=info'
+            myt: '=info',
+            testFn: '&'
         },
         //templateUrl: '<h1> holas </h1>'
-        templateUrl: '/Content/teeth.html'
+        templateUrl: '/Content/tooth.html',
+        link: function (scope, elm, attrs) {
+            scope.callUpdate = function () {
+                alert(scope.upperTeeth);
+                //scope.testFn()("Directive Args");
+            }
+        }
     };
 });
