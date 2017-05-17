@@ -220,3 +220,8 @@ svg .tooth_part {
     fill: #fff;
     stroke-width: 0.5px;
 }
+
+
+.odontogram {
+    display: inline-block;
+}

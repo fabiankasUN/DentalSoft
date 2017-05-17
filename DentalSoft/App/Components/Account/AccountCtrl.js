@@ -1,4 +1,4 @@
-﻿angular.module('app').controller('accountControllerjs', function ($scope, $http, $location) {
+﻿angular.module('app').controller('accountCtrl', function ($scope, $http, $location) {
 
     $scope.value = "testtasdaest";
 

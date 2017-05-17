@@ -214,8 +214,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\App.js" />
-    <Content Include="App\Contollers\AccountControllerJS.js" />
-    <Content Include="App\Contollers\OdontogramControllerJS.js" />
+    <Content Include="App\Components\Account\AccountCtrl.js" />
+    <Content Include="App\Components\Odontogram\OdontogramCtrl.js" />
+    <Content Include="App\Components\Odontogram\OdontogramDirective.js" />
+    <Content Include="App\Components\Odontogram\OdontogramService.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\tooth.html" />
@@ -251,6 +253,8 @@
     </Content>
     <Content Include="App_Code\Utils.cshtml" />
     <Content Include="Content\teeth.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -304,6 +308,7 @@
     <Content Include="Views\Account\LogOff.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\Assets\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

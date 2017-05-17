@@ -46,11 +46,13 @@ namespace DentalSoft.Controllers
                 public int buttom { get; set; }
                 public int left { get; set; }
                public  int right { get; set; }
+                public string color { get; set; }
                 public Teeth(int top,int buttom,int left, int right ) {
                     this.top = top;
                     this.buttom = buttom;
                     this.left = left;
                     this.right = right;
+                    this.color = "blue";
                 }
             }
 
