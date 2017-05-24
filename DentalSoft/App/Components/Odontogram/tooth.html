@@ -1,36 +1,42 @@
 ﻿<div class="odontogram">
     <div class="row">
-        15
-
     </div>
-    <svg width="60px" viewBox="0 -2 100 100" version="1.1" id="_tooth_18">
+    <svg width="62px" viewBox="0 -2 100 100" version="1.1" id="_tooth_18">
 
-        <g ng-click="testFn()"  class="tooth_part tooth_root tooth_root_upper">
+        
+        <g ng-click="testFn()"  class="tooth_part" >
             <title>Cervical</title>
             <path fill="{{myt.color}}" d="M 48,0.5 A 47.5,47.5 0 0 0 14.389,14.48 L 25.696,25.787 A 31.5,31.5 0 0 1 48,16.5 31.5,31.5 0 0 1 70.309,25.785 L 81.613,14.479 A 47.5,47.5 0 0 0 42,0.5 Z" class="tooth_origin_element"></path>
         </g>
 
-        <g ng-click="testFn()" test-fn="testFn()" class="tooth_part tooth_root tooth_root_lower">
+        <g ng-click="otherFn()" class="tooth_part">
             <title>Cervical</title>
             <path d="M 70.311,70.205 A 31.5,31.5 0 0 1 48,79.5 31.5,31.5 0 0 1 25.686,70.209 L 14.379,81.516 A 47.5,47.5 0 0 0 48,95.5 47.5,47.5 0 0 0 81.617,81.514 L 70.311,70.205 Z" class="tooth_origin_element"></path>
+            
         </g>
-        <g ng-click="testFn()" class="tooth_part tooth_face tooth_face_lower">
+        <g ng-click="testFn()" class="tooth_part">
             <title>Palatino</title>
             <path d="M 37.047,58.953 25.74,70.26 A 31.5,31.5 0 0 0 48,79.5 31.5,31.5 0 0 0 70.26,70.26 L 58.953,58.953 A 15.5,15.5 0 0 1 48,63.5 15.5,15.5 0 0 1 37.047,58.953 Z" class="tooth_origin_element"></path>
+            <g>
+                <path d="m 35,67 a 22,22 0 0 0 26,0" style="opacity:1;fill:none;stroke:#ff0000;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1"></path>
+            </g>
         </g>
-        <g ng-click="testFn()" class="tooth_part tooth_face tooth_face_upper">
+        <g ng-click="testFn()" class="tooth_part ">
             <title>Vestibular</title>
             <path d="M 48,16.5 A 31.5,31.5 0 0 0 25.74,25.74 L 37.047,37.047 A 15.5,15.5 0 0 1 48,32.5 15.5,15.5 0 0 1 58.953,37.047 L 70.26,25.74 A 31.5,31.5 0 0 0 48,16.5 Z" class="tooth_origin_element"></path>
+            <g>
+                <path d="m 35,29 a 22,22 0 0 1 26,0" style="opacity:1;fill:none;stroke:#ff0000;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1"></path>
+            </g>
         </g>
-        <g ng-click="testFn()" class="tooth_part tooth_face tooth_face_right">
+        <g ng-click="testFn()" class="tooth_part">
             <title>Mesial</title>
             <path d="M 70.26,25.74 58.953,37.047 A 15.5,15.5 0 0 1 63.5,48 15.5,15.5 0 0 1 58.953,58.953 L 70.26,70.26 A 31.5,31.5 0 0 0 79.5,48 31.5,31.5 0 0 0 70.26,25.74 Z" class="tooth_origin_element"></path>
         </g>
-        <g ng-click="testFn()" class="tooth_part tooth_face tooth_face_left">
+        <g ng-click="testFn()" class="tooth_part">
             <title>Distal</title>
             <path d="M 25.74,25.74 A 31.5,31.5 0 0 0 16.5,48 31.5,31.5 0 0 0 25.74,70.26 L 37.047,58.953 A 15.5,15.5 0 0 1 32.5,48 15.5,15.5 0 0 1 37.047,37.047 L 25.74,25.74 Z" class="tooth_origin_element"></path>
         </g>
-        <g ng-click="testFn()" class="tooth_part tooth_center">
+        <g ng-click="testFn()" class="tooth_part">
             <title>Oclusal</title>
             <circle cy="48" cx="48" r="15.5" class="tooth_origin_element"></circle>
         </g>
@@ -38,5 +44,17 @@
           <path d="M 12,48 36,72 84,24" style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"></path>  
 
         </g>
+
+        <g>
+            <ellipse class="odontogram_tool_element" rx="29.339853" ry="7.8044009" cx="47.647923" cy="46.885086" style="fill-opacity:0;stroke:#00ff00;stroke-width:4px;stroke-opacity:1"></ellipse>
+
+        </g>
+        
+        <g>
+            <path class="odontogram_tool_element" d="M 24,48 A 24,24 1 1 1 72,48" style="fill:none;stroke:#F00;stroke-width:8;stroke-linecap:round"></path>
+
+        </g>
+        
+
     </svg>
 </div>

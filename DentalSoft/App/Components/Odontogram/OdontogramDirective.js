@@ -3,10 +3,11 @@
         restrict: 'EA',
         scope: {
             myt: '=info',
-            testFn: '&'
+            testFn: '&',
+            otherFn: '&'
         },
         //templateUrl: '<h1> holas </h1>'
-        templateUrl: '/Content/tooth.html',
+        templateUrl: '/App/Components/Odontogram/tooth.html',
         link: function (scope, elm, attrs) {
             scope.callUpdate = function () {
                 alert(scope.upperTeeth);
