@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DentalSoft.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -60,10 +61,15 @@ namespace DentalSoft.Controllers
                 return upperTeeth[0].top+"";
             }
         }
+
+
+
+
         //GET /Odontogram/GetOdontogram
         [HttpGet]
         public JsonResult GetOdontogram( ) {
             Odontogram o = new Odontogram( );
+            //Odontogram o = new Odontogram( );
             return Json( o, JsonRequestBehavior.AllowGet );
         }
 

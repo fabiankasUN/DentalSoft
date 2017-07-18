@@ -30,5 +30,8 @@ namespace DentalSoft.Models
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Odontogram> Odontogram { get; set; }
+        public virtual DbSet<Patient> Patient { get; set; }
+        public virtual DbSet<Teeth> Teeth { get; set; }
     }
 }

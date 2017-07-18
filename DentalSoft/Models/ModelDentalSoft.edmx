@@ -66,6 +66,75 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="Odontogram">
+          <Key>
+            <PropertyRef Name="Id_Odontogram" />
+          </Key>
+          <Property Name="Id_Odontogram" Type="int" Nullable="false" />
+          <Property Name="Fk_IdPatient" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreationDate" Type="date" />
+          <Property Name="first" Type="bit" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Id_patient" />
+          </Key>
+          <Property Name="Id_patient" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DocumentType" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SecondSurname" Type="nvarchar" MaxLength="100" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Occupation" Type="nvarchar" MaxLength="100" />
+          <Property Name="CivilState" Type="nvarchar" MaxLength="1" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cellphone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="SocialSecurity" Type="nvarchar" MaxLength="1" />
+          <Property Name="Eps" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Teeth">
+          <Key>
+            <PropertyRef Name="Id_Teeth" />
+            <PropertyRef Name="Id_Odontogram" />
+          </Key>
+          <Property Name="Id_Teeth" Type="int" Nullable="false" />
+          <Property Name="Id_Odontogram" Type="int" Nullable="false" />
+          <Property Name="Cervical" Type="int" />
+          <Property Name="Vestibular" Type="int" />
+          <Property Name="Oclusal" Type="int" />
+          <Property Name="Palatino" Type="int" />
+          <Property Name="Distal" Type="int" />
+          <Property Name="Mesial" Type="int" />
+        </EntityType>
+        <Association Name="FK__Odontogra__Fk_Id__403A8C7D">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="Odontogram" Type="Self.Odontogram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id_patient" />
+            </Principal>
+            <Dependent Role="Odontogram">
+              <PropertyRef Name="Fk_IdPatient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teeth__Id_Odonto__49C3F6B7">
+          <End Role="Odontogram" Type="Self.Odontogram" Multiplicity="1" />
+          <End Role="Teeth" Type="Self.Teeth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odontogram">
+              <PropertyRef Name="Id_Odontogram" />
+            </Principal>
+            <Dependent Role="Teeth">
+              <PropertyRef Name="Id_Odontogram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -129,6 +198,17 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Odontogram" EntityType="Self.Odontogram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teeth" EntityType="Self.Teeth" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Odontogra__Fk_Id__403A8C7D" Association="Self.FK__Odontogra__Fk_Id__403A8C7D">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Odontogram" EntitySet="Odontogram" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teeth__Id_Odonto__49C3F6B7" Association="Self.FK__Teeth__Id_Odonto__49C3F6B7">
+            <End Role="Odontogram" EntitySet="Odontogram" />
+            <End Role="Teeth" EntitySet="Teeth" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -259,7 +339,91 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Odontogram" EntityType="dbdentalsoftModel.Odontogram" />
+          <EntitySet Name="Patient" EntityType="dbdentalsoftModel.Patient" />
+          <EntitySet Name="Teeth" EntityType="dbdentalsoftModel.Teeth" />
+          <AssociationSet Name="FK__Odontogra__Fk_Id__403A8C7D" Association="dbdentalsoftModel.FK__Odontogra__Fk_Id__403A8C7D">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Odontogram" EntitySet="Odontogram" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teeth__Id_Odonto__49C3F6B7" Association="dbdentalsoftModel.FK__Teeth__Id_Odonto__49C3F6B7">
+            <End Role="Odontogram" EntitySet="Odontogram" />
+            <End Role="Teeth" EntitySet="Teeth" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Odontogram">
+          <Key>
+            <PropertyRef Name="Id_Odontogram" />
+          </Key>
+          <Property Name="Id_Odontogram" Type="Int32" Nullable="false" />
+          <Property Name="Fk_IdPatient" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="0" />
+          <Property Name="first" Type="Boolean" />
+          <NavigationProperty Name="Patient" Relationship="dbdentalsoftModel.FK__Odontogra__Fk_Id__403A8C7D" FromRole="Odontogram" ToRole="Patient" />
+          <NavigationProperty Name="Teeth" Relationship="dbdentalsoftModel.FK__Teeth__Id_Odonto__49C3F6B7" FromRole="Odontogram" ToRole="Teeth" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Id_patient" />
+          </Key>
+          <Property Name="Id_patient" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SecondSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Occupation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CivilState" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cellphone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SocialSecurity" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Eps" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Odontogram" Relationship="dbdentalsoftModel.FK__Odontogra__Fk_Id__403A8C7D" FromRole="Patient" ToRole="Odontogram" />
+        </EntityType>
+        <EntityType Name="Teeth">
+          <Key>
+            <PropertyRef Name="Id_Teeth" />
+            <PropertyRef Name="Id_Odontogram" />
+          </Key>
+          <Property Name="Id_Teeth" Type="Int32" Nullable="false" />
+          <Property Name="Id_Odontogram" Type="Int32" Nullable="false" />
+          <Property Name="Cervical" Type="Int32" />
+          <Property Name="Vestibular" Type="Int32" />
+          <Property Name="Oclusal" Type="Int32" />
+          <Property Name="Palatino" Type="Int32" />
+          <Property Name="Distal" Type="Int32" />
+          <Property Name="Mesial" Type="Int32" />
+          <NavigationProperty Name="Odontogram" Relationship="dbdentalsoftModel.FK__Teeth__Id_Odonto__49C3F6B7" FromRole="Teeth" ToRole="Odontogram" />
+        </EntityType>
+        <Association Name="FK__Odontogra__Fk_Id__403A8C7D">
+          <End Type="dbdentalsoftModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="dbdentalsoftModel.Odontogram" Role="Odontogram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id_patient" />
+            </Principal>
+            <Dependent Role="Odontogram">
+              <PropertyRef Name="Fk_IdPatient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teeth__Id_Odonto__49C3F6B7">
+          <End Type="dbdentalsoftModel.Odontogram" Role="Odontogram" Multiplicity="1" />
+          <End Type="dbdentalsoftModel.Teeth" Role="Teeth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odontogram">
+              <PropertyRef Name="Id_Odontogram" />
+            </Principal>
+            <Dependent Role="Teeth">
+              <PropertyRef Name="Id_Odontogram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -329,6 +493,53 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Odontogram">
+            <EntityTypeMapping TypeName="dbdentalsoftModel.Odontogram">
+              <MappingFragment StoreEntitySet="Odontogram">
+                <ScalarProperty Name="first" ColumnName="first" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Fk_IdPatient" ColumnName="Fk_IdPatient" />
+                <ScalarProperty Name="Id_Odontogram" ColumnName="Id_Odontogram" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient">
+            <EntityTypeMapping TypeName="dbdentalsoftModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="Eps" ColumnName="Eps" />
+                <ScalarProperty Name="SocialSecurity" ColumnName="SocialSecurity" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CivilState" ColumnName="CivilState" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="SecondSurname" ColumnName="SecondSurname" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="Id_patient" ColumnName="Id_patient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teeth">
+            <EntityTypeMapping TypeName="dbdentalsoftModel.Teeth">
+              <MappingFragment StoreEntitySet="Teeth">
+                <ScalarProperty Name="Mesial" ColumnName="Mesial" />
+                <ScalarProperty Name="Distal" ColumnName="Distal" />
+                <ScalarProperty Name="Palatino" ColumnName="Palatino" />
+                <ScalarProperty Name="Oclusal" ColumnName="Oclusal" />
+                <ScalarProperty Name="Vestibular" ColumnName="Vestibular" />
+                <ScalarProperty Name="Cervical" ColumnName="Cervical" />
+                <ScalarProperty Name="Id_Odontogram" ColumnName="Id_Odontogram" />
+                <ScalarProperty Name="Id_Teeth" ColumnName="Id_Teeth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

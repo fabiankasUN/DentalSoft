@@ -9,14 +9,19 @@
         alert("otehr function");
     }
 
+    $scope.keyPress = function (e) {
+        console.log(e);
+        alert(e);
+    }
+
 
     $scope.getData = function () {
         odontogramService.getOdontogram().then(function (response) {
+
             $scope.upperTeeth = response.data.upperTeeth;
             $scope.upperTemporalTeeth = response.data.upperTemporalTeeth;
             $scope.lowerTemporalTeeth = response.data.lowerTemporalTeeth;
             $scope.lowerTeeth = response.data.lowerTeeth;
         });
-        
     };
 })
