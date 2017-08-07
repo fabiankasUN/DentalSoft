@@ -1,4 +1,5 @@
-﻿using DentalSoft.Models;
+﻿using Data;
+using DentalSoft.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,38 +31,44 @@ namespace DentalSoft.Controllers
                 Random r = new Random( );
                 for ( int i= 0; i < 16; i++ ) {
                     
-                    int a = r.Next( 1, 10 );
-                    int b = r.Next( 1, 10 );
-                    int c = r.Next( 1, 10 );
-                    upperTeeth[i] = new Teeth(a,b,c,a);
-                    lowerTeeth[i] = new Teeth( a, b, c, a );
+                    int a = r.Next( 1, 3 );
+                    int b = r.Next( 1, 3 );
+                    int c = r.Next( 1, 3 );
+                    upperTeeth[i] = new Teeth(a,b,c,a,b);
+                    lowerTeeth[i] = new Teeth( a, b, c, a,b );
                     if ( i < 10 ) {
-                        upperTemporalTeeth[i] = new Teeth( a, b, c, a );
-                        lowerTemporalTeeth[i] = new Teeth( a, b, c, a );
+                        upperTemporalTeeth[i] = new Teeth( a, b, c, a ,b);
+                        lowerTemporalTeeth[i] = new Teeth( a, b, c, a,b );
                     }
                     Debug.Write( a );
                 }
             }
             public class Teeth {
-                public int top { get; set; }
-                public int buttom { get; set; }
-                public int left { get; set; }
-               public  int right { get; set; }
-                public string color { get; set; }
-                public Teeth(int top,int buttom,int left, int right ) {
-                    this.top = top;
-                    this.buttom = buttom;
-                    this.left = left;
-                    this.right = right;
-                    this.color = "blue";
+                public int Id { get; set; }
+                public int UpperCervical { get; set; }
+                public int LowerCervical { get; set; }
+                public int Vertibular { get; set; }
+                public int Oclusal { get; set; }
+                public int Palatino { get; set; }
+                public int Distal { get; set; }
+                public int Mesial { get; set; }
+                public int General { get; set; }
+                public Teeth(int top,int buttom,int left, int right, int id ) {
+                    this.UpperCervical = top;
+                    this.LowerCervical = buttom;
+                    this.Vertibular = left;
+                    this.Oclusal = right;
+                    //this.color = "blue";
+                    this.Id = id;
+                    this.General = 1;
                 }
             }
 
             public string toString( ) {
-                return upperTeeth[0].top+"";
+                return upperTeeth[0].UpperCervical+"";
             }
         }
-
+        
 
 
 

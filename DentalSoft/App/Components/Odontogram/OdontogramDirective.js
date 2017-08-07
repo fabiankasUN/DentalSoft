@@ -2,15 +2,16 @@
     return {
         restrict: 'EA',
         scope: {
-            myt: '=info',
-            testFn: '&',
-            otherFn: '&'
+            tooth: '=info',
+            colors: '=c',
+            actionFn: '&',
         },
         //templateUrl: '<h1> holas </h1>'
         templateUrl: '/App/Components/Odontogram/tooth.html',
         link: function (scope, elm, attrs) {
             scope.callUpdate = function () {
                 alert(scope.upperTeeth);
+                alert("xd");
                 //scope.testFn()("Directive Args");
             }
         }

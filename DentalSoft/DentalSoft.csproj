@@ -178,47 +178,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>ModelDentalSoft.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>ModelDentalSoft.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>ModelDentalSoft.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>ModelDentalSoft.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>ModelDentalSoft.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ModelDentalSoft.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDentalSoft.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelDentalSoft.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDentalSoft.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelDentalSoft.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDentalSoft.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Odontogram.cs">
-      <DependentUpon>ModelDentalSoft.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Patient.cs">
-      <DependentUpon>ModelDentalSoft.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Teeth.cs">
-      <DependentUpon>ModelDentalSoft.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -704,29 +665,10 @@
     <Content Include="Images\loginImage.jpg" />
     <Content Include="Images\loginImage2.jpg" />
     <Content Include="Images\loginImage3.jpg" />
-    <Content Include="Models\ModelDentalSoft.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDentalSoft.edmx</DependentUpon>
-      <LastGenOutput>ModelDentalSoft.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\ModelDentalSoft.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDentalSoft.edmx</DependentUpon>
-      <LastGenOutput>ModelDentalSoft.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ModelDentalSoft.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelDentalSoft.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ModelDentalSoft.edmx.diagram">
-      <DependentUpon>ModelDentalSoft.edmx</DependentUpon>
-    </Content>
     <Content Include="App_Code\Utils.cshtml" />
     <Content Include="Content\teeth.cshtml" />
-    <Content Include="ClassDiagram1.cd" />
-    <Content Include="ClassDiagram2.cd" />
     <None Include=".bin\bower.cmd" />
     <None Include=".bin\git.cmd" />
     <None Include=".bin\node.cmd" />
@@ -835,6 +777,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{c71825b0-5451-4a57-abe1-adae39f01981}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
