@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DentalSoft.Models;
+using Data.Entities;
 
 namespace DentalSoft.Controllers
 {
@@ -58,6 +59,9 @@ namespace DentalSoft.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            DentalModeldb db = new DentalModeldb( );
+            db.Client.Any( );
+
             return View();
         }
 

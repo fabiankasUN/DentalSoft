@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using ViewModels.Odontogram;
 
 namespace DentalSoft.Controllers
 {
@@ -68,19 +69,16 @@ namespace DentalSoft.Controllers
                 return upperTeeth[0].UpperCervical+"";
             }
         }
-        
-
-
-
         //GET /Odontogram/GetOdontogram
         [HttpGet]
         public JsonResult GetOdontogram( ) {
             Odontogram o = new Odontogram( );
+            DentalService.DentalService d = new DentalService.DentalService( );
+            foreach( OdontogramActionVM v in d.GetOdontogramActions() ) {
+                Debug.Write( v.Code );
+            }
             //Odontogram o = new Odontogram( );
             return Json( o, JsonRequestBehavior.AllowGet );
         }
-
-
-
     }
 }

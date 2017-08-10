@@ -783,6 +783,14 @@
       <Project>{c71825b0-5451-4a57-abe1-adae39f01981}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DentalService\DentalService.csproj">
+      <Project>{a5eaaac8-5d91-4248-894b-fe3907a44926}</Project>
+      <Name>DentalService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{E365E66B-7015-4FDB-BF66-BE7C986DA53E}</Project>
+      <Name>ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -10,10 +10,10 @@
 namespace Data.Entities
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Billing
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int Id_billing { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

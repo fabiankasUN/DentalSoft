@@ -12,17 +12,11 @@ namespace Data.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Appointment
+    public partial class OdontogramAction
     {
-        public int Id_Appointment { get; set; }
-        public int Id_patient { get; set; }
-        public int Id_service { get; set; }
-        public int Id_User { get; set; }
-        public int Id_state { get; set; }
-    
-        public virtual Patient Patient { get; set; }
-        public virtual Service Service { get; set; }
-        public virtual StateAppointment StateAppointment { get; set; }
-        public virtual User User { get; set; }
+        public int Id_action { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
+        public string shorcut { get; set; }
     }
 }
