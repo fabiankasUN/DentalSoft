@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbdentalsoftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="Id_Appointment" />
+    </Key>
+    <Property Name="Id_Appointment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_patient" Type="Int32" Nullable="false" />
+    <Property Name="Id_service" Type="Int32" Nullable="false" />
+    <Property Name="Id_User" Type="Int32" Nullable="false" />
+    <Property Name="Id_state" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_Appointment_Patient" FromRole="Appointment" ToRole="Patient" />
+    <NavigationProperty Name="Service" Relationship="Self.FK_Appointment_Service" FromRole="Appointment" ToRole="Service" />
+    <NavigationProperty Name="StateAppointment" Relationship="Self.FK_Appointment_StateAppointment" FromRole="Appointment" ToRole="StateAppointment" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Appointment_User" FromRole="Appointment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_AspNetUsers" FromRole="AspNetUsers" ToRole="User" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Billing">
+    <Key>
+      <PropertyRef Name="Id_billing" />
+    </Key>
+    <Property Name="Id_billing" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id_Client" />
+    </Key>
+    <Property Name="Id_Client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Service" Relationship="Self.ClientService" FromRole="Client" ToRole="Service" />
+    <NavigationProperty Name="User" Relationship="Self.UserClient" FromRole="Client" ToRole="User" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Odontogram">
+    <Key>
+      <PropertyRef Name="Id_Odontogram" />
+    </Key>
+    <Property Name="Id_Odontogram" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_patient" Type="Int32" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="first" Type="Boolean" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK__Odontogra__Fk_Id__403A8C7D" FromRole="Odontogram" ToRole="Patient" />
+    <NavigationProperty Name="Teeth" Relationship="Self.FK__Teeth__Id_Odonto__49C3F6B7" FromRole="Odontogram" ToRole="Teeth" />
+  </EntityType>
+  <EntityType Name="OdontogramAction">
+    <Key>
+      <PropertyRef Name="Id_action" />
+    </Key>
+    <Property Name="Id_action" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="shorcut" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id_patient" />
+    </Key>
+    <Property Name="Id_patient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentType" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SecondSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Occupation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CivilState" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Cellphone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SocialSecurity" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="Eps" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Appointment_Patient" FromRole="Patient" ToRole="Appointment" />
+    <NavigationProperty Name="Odontogram" Relationship="Self.FK__Odontogra__Fk_Id__403A8C7D" FromRole="Patient" ToRole="Odontogram" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id_service" />
+    </Key>
+    <Property Name="Id_service" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_Appointment" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Appointment_Service" FromRole="Service" ToRole="Appointment" />
+    <NavigationProperty Name="Client" Relationship="Self.ClientService" FromRole="Service" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="StateAppointment">
+    <Key>
+      <PropertyRef Name="Id_state" />
+    </Key>
+    <Property Name="Id_state" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Appointment_StateAppointment" FromRole="StateAppointment" ToRole="Appointment" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Teeth">
+    <Key>
+      <PropertyRef Name="Id_Teeth" />
+      <PropertyRef Name="Id_Odontogram" />
+    </Key>
+    <Property Name="Id_Teeth" Type="Int32" Nullable="false" />
+    <Property Name="Id_Odontogram" Type="Int32" Nullable="false" />
+    <Property Name="UpperCervical" Type="Int32" />
+    <Property Name="Vestibular" Type="Int32" />
+    <Property Name="Oclusal" Type="Int32" />
+    <Property Name="Palatino" Type="Int32" />
+    <Property Name="Distal" Type="Int32" />
+    <Property Name="Mesial" Type="Int32" />
+    <Property Name="LowerServical" Type="Int32" />
+    <Property Name="General" Type="Int32" />
+    <NavigationProperty Name="Odontogram" Relationship="Self.FK__Teeth__Id_Odonto__49C3F6B7" FromRole="Teeth" ToRole="Odontogram" />
+    <NavigationProperty Name="OdontogramTreatment" Relationship="dbdentalsoftModel.TeethTreatment" FromRole="Teeth" ToRole="OdontogramTreatment" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_AspNetUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Occupation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Appointment_User" FromRole="User" ToRole="Appointment" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Client" Relationship="Self.UserClient" FromRole="User" ToRole="Client" />
+    <Property Name="Id_rol" Type="Int32" />
+    <NavigationProperty Name="Rol" Relationship="dbdentalsoftModel.FK_User_Rol" FromRole="User" ToRole="Rol" />
+  </EntityType>
+  <Association Name="FK_Appointment_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id_patient" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Id_patient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id_service" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Id_service" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_StateAppointment">
+    <End Role="StateAppointment" Type="Self.StateAppointment" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateAppointment">
+        <PropertyRef Name="Id_state" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Id_state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Id_AspNetUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Odontogra__Fk_Id__403A8C7D">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Odontogram" Type="Self.Odontogram" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id_patient" />
+      </Principal>
+      <Dependent Role="Odontogram">
+        <PropertyRef Name="Id_patient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Teeth__Id_Odonto__49C3F6B7">
+    <End Role="Odontogram" Type="Self.Odontogram" Multiplicity="1" />
+    <End Role="Teeth" Type="Self.Teeth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Odontogram">
+        <PropertyRef Name="Id_Odontogram" />
+      </Principal>
+      <Dependent Role="Teeth">
+        <PropertyRef Name="Id_Odontogram" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <Association Name="ClientService">
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+  </Association>
+  <Association Name="UserClient">
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="DentalModeldb" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="Billing" EntityType="Self.Billing" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Odontogram" EntityType="Self.Odontogram" />
+    <EntitySet Name="OdontogramAction" EntityType="Self.OdontogramAction" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" />
+    <EntitySet Name="Service" EntityType="Self.Service" />
+    <EntitySet Name="StateAppointment" EntityType="Self.StateAppointment" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Teeth" EntityType="Self.Teeth" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Appointment_Patient" Association="Self.FK_Appointment_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Service" Association="Self.FK_Appointment_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_StateAppointment" Association="Self.FK_Appointment_StateAppointment">
+      <End Role="StateAppointment" EntitySet="StateAppointment" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_User" Association="Self.FK_Appointment_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_AspNetUsers" Association="Self.FK_User_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Odontogra__Fk_Id__403A8C7D" Association="Self.FK__Odontogra__Fk_Id__403A8C7D">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Odontogram" EntitySet="Odontogram" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Teeth__Id_Odonto__49C3F6B7" Association="Self.FK__Teeth__Id_Odonto__49C3F6B7">
+      <End Role="Odontogram" EntitySet="Odontogram" />
+      <End Role="Teeth" EntitySet="Teeth" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="ClientService" Association="Self.ClientService">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Service" EntitySet="Service" />
+    </AssociationSet>
+    <AssociationSet Name="UserClient" Association="Self.UserClient">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(dbdentalsoftModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(dbdentalsoftModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="OdontogramTreatment" EntityType="dbdentalsoftModel.OdontogramTreatment" />
+    <AssociationSet Name="TeethTreatment" Association="dbdentalsoftModel.TeethTreatment">
+      <End Role="OdontogramTreatment" EntitySet="OdontogramTreatment" />
+      <End Role="Teeth" EntitySet="Teeth" />
+    </AssociationSet>
+    <EntitySet Name="Action" EntityType="dbdentalsoftModel.Action" />
+    <EntitySet Name="Module" EntityType="dbdentalsoftModel.Module" />
+    <EntitySet Name="ModuleType" EntityType="dbdentalsoftModel.ModuleType" />
+    <EntitySet Name="Operation" EntityType="dbdentalsoftModel.Operation" />
+    <EntitySet Name="Rol" EntityType="dbdentalsoftModel.Rol" />
+    <AssociationSet Name="FK_Module_ModuleType" Association="dbdentalsoftModel.FK_Module_ModuleType">
+      <End Role="ModuleType" EntitySet="ModuleType" />
+      <End Role="Module" EntitySet="Module" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Operation_Module" Association="dbdentalsoftModel.FK_Operation_Module">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="Operation" EntitySet="Operation" />
+    </AssociationSet>
+    <AssociationSet Name="ActionOperation" Association="dbdentalsoftModel.ActionOperation">
+      <End Role="Action" EntitySet="Action" />
+      <End Role="Operation" EntitySet="Operation" />
+    </AssociationSet>
+    <AssociationSet Name="RolModule" Association="dbdentalsoftModel.RolModule">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="Rol" EntitySet="Rol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Rol" Association="dbdentalsoftModel.FK_User_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="OdontogramTreatment">
+    <Key>
+      <PropertyRef Name="Id_Treatment" />
+    </Key>
+    <Property Name="Id_Treatment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="Int32" />
+    <NavigationProperty Name="Teeth" Relationship="dbdentalsoftModel.TeethTreatment" FromRole="OdontogramTreatment" ToRole="Teeth" />
+  </EntityType>
+  <Association Name="TeethTreatment">
+    <End Type="dbdentalsoftModel.OdontogramTreatment" Role="OdontogramTreatment" Multiplicity="*" />
+    <End Type="dbdentalsoftModel.Teeth" Role="Teeth" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Action">
+    <Key>
+      <PropertyRef Name="Id_action" />
+    </Key>
+    <Property Name="Id_action" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Operation" Relationship="dbdentalsoftModel.ActionOperation" FromRole="Action" ToRole="Operation" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="Id_module" />
+    </Key>
+    <Property Name="Id_module" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsMenuOption" Type="Boolean" Nullable="false" />
+    <Property Name="MenuOrder" Type="Int32" Nullable="false" />
+    <Property Name="Id_moduleType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ModuleType" Relationship="dbdentalsoftModel.FK_Module_ModuleType" FromRole="Module" ToRole="ModuleType" />
+    <NavigationProperty Name="Operation" Relationship="dbdentalsoftModel.FK_Operation_Module" FromRole="Module" ToRole="Operation" />
+    <NavigationProperty Name="Rol" Relationship="dbdentalsoftModel.RolModule" FromRole="Module" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="ModuleType">
+    <Key>
+      <PropertyRef Name="Id_moduleType" />
+    </Key>
+    <Property Name="Id_moduleType" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Module" Relationship="dbdentalsoftModel.FK_Module_ModuleType" FromRole="ModuleType" ToRole="Module" />
+  </EntityType>
+  <EntityType Name="Operation">
+    <Key>
+      <PropertyRef Name="Id_operation" />
+    </Key>
+    <Property Name="Id_operation" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_module" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Module" Relationship="dbdentalsoftModel.FK_Operation_Module" FromRole="Operation" ToRole="Module" />
+    <NavigationProperty Name="Action" Relationship="dbdentalsoftModel.ActionOperation" FromRole="Operation" ToRole="Action" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id_rol" />
+    </Key>
+    <Property Name="Id_rol" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Module" Relationship="dbdentalsoftModel.RolModule" FromRole="Rol" ToRole="Module" />
+    <NavigationProperty Name="User" Relationship="dbdentalsoftModel.FK_User_Rol" FromRole="Rol" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Module_ModuleType">
+    <End Type="dbdentalsoftModel.ModuleType" Role="ModuleType" Multiplicity="1" />
+    <End Type="dbdentalsoftModel.Module" Role="Module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleType">
+        <PropertyRef Name="Id_moduleType" />
+      </Principal>
+      <Dependent Role="Module">
+        <PropertyRef Name="Id_moduleType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Operation_Module">
+    <End Type="dbdentalsoftModel.Module" Role="Module" Multiplicity="1" />
+    <End Type="dbdentalsoftModel.Operation" Role="Operation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="Id_module" />
+      </Principal>
+      <Dependent Role="Operation">
+        <PropertyRef Name="Id_module" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ActionOperation">
+    <End Type="dbdentalsoftModel.Action" Role="Action" Multiplicity="*" />
+    <End Type="dbdentalsoftModel.Operation" Role="Operation" Multiplicity="*" />
+  </Association>
+  <Association Name="RolModule">
+    <End Type="dbdentalsoftModel.Module" Role="Module" Multiplicity="*" />
+    <End Type="dbdentalsoftModel.Rol" Role="Rol" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_User_Rol">
+    <End Type="dbdentalsoftModel.Rol" Role="Rol" Multiplicity="0..1" />
+    <End Type="dbdentalsoftModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id_rol" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

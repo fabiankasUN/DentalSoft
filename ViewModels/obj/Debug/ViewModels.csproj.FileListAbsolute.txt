@@ -1,0 +1,10 @@
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\bin\Debug\ViewModels.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\bin\Debug\ViewModels.pdb
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\obj\Debug\ViewModels.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\obj\Debug\ViewModels.pdb
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\bin\Debug\ViewModels.dll.config
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\bin\Debug\EntityFramework.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\bin\Debug\EntityFramework.SqlServer.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\bin\Debug\EntityFramework.xml
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\bin\Debug\EntityFramework.SqlServer.xml
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\ViewModels\obj\Debug\ViewModels.csprojResolveAssemblyReference.cache

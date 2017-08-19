@@ -5,6 +5,8 @@
         $scope.lastPressed = ' ';
         $scope.array = ['blue', 'red', 'green'];
         $scope.getData();
+        $scope.selectedAction = '';
+        
     }
     
 
@@ -27,7 +29,6 @@
             $scope.upperTemporalTeeth = response.data.upperTemporalTeeth;
             $scope.lowerTemporalTeeth = response.data.lowerTemporalTeeth;
             $scope.lowerTeeth = response.data.lowerTeeth;
-            
         });
     };
 })

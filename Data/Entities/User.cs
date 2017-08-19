@@ -33,11 +33,13 @@ namespace Data.Entities
         public string Mail { get; set; }
         public string Occupation { get; set; }
         public string phone { get; set; }
+        public Nullable<int> Id_rol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointment { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client> Client { get; set; }
+        public virtual Rol Rol { get; set; }
     }
 }

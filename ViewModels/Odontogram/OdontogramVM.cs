@@ -31,5 +31,8 @@ namespace ViewModels.Odontogram
 
         [DataMember]
         public List<OdontogramActionVM> actions { get; set; }
+
+        [DataMember]
+        public List<OdontogramTreatmentVM> treatment { get; set; }
     }
 }

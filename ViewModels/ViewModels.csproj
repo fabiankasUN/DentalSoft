@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Odontogram\OdontogramTreatmentVM.cs" />
     <Compile Include="Odontogram\OdontogramVM.cs" />
     <Compile Include="Odontogram\OdontogramActionVM.cs" />
     <Compile Include="Odontogram\TeethVM.cs" />

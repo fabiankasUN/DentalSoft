@@ -43,6 +43,12 @@ namespace Data.Entities
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Teeth> Teeth { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<OdontogramTreatment> OdontogramTreatment { get; set; }
+        public virtual DbSet<Action> Action { get; set; }
+        public virtual DbSet<Module> Module { get; set; }
+        public virtual DbSet<ModuleType> ModuleType { get; set; }
+        public virtual DbSet<Operation> Operation { get; set; }
+        public virtual DbSet<Rol> Rol { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

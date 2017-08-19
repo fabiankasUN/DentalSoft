@@ -18,7 +18,7 @@ namespace DentalSoft.Controllers
         {
             return View();
         }
-        public class Odontogram {
+        /*public class Odontogram {
 
             public Teeth [] upperTeeth { get; set;}
             public Teeth[] upperTemporalTeeth { get; set; }
@@ -68,15 +68,16 @@ namespace DentalSoft.Controllers
             public string toString( ) {
                 return upperTeeth[0].UpperCervical+"";
             }
-        }
+        }*/
         //GET /Odontogram/GetOdontogram
         [HttpGet]
         public JsonResult GetOdontogram( ) {
-            Odontogram o = new Odontogram( );
-            DentalService.DentalService d = new DentalService.DentalService( );
-            foreach( OdontogramActionVM v in d.GetOdontogramActions() ) {
-                Debug.Write( v.Code );
-            }
+            //Odontogram o = new Odontogram( );
+            DentalService.DentalService client = new DentalService.DentalService( );
+            OdontogramVM o= client.GetOdontogram(1, true );
+            //foreach ( OdontogramActionVM v in d.GetOdontogramActions() ) {
+            //    Debug.Write( v.Code );
+            //}
             //Odontogram o = new Odontogram( );
             return Json( o, JsonRequestBehavior.AllowGet );
         }

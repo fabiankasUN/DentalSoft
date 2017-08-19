@@ -14,6 +14,12 @@ namespace Data.Entities
     
     public partial class Teeth
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Teeth()
+        {
+            this.OdontogramTreatment = new HashSet<OdontogramTreatment>();
+        }
+    
         public int Id_Teeth { get; set; }
         public int Id_Odontogram { get; set; }
         public Nullable<int> UpperCervical { get; set; }
@@ -26,5 +32,7 @@ namespace Data.Entities
         public Nullable<int> General { get; set; }
     
         public virtual Odontogram Odontogram { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OdontogramTreatment> OdontogramTreatment { get; set; }
     }
 }

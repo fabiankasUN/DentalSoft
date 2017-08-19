@@ -1,0 +1,13 @@
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\bin\Debug\Data.dll.config
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\bin\Debug\Data.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\bin\Debug\Data.pdb
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\bin\Debug\EntityFramework.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\bin\Debug\EntityFramework.xml
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\obj\Debug\Data.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\obj\Debug\Data.pdb
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\obj\Debug\Data.Properties.Resources.resources
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\obj\Debug\Data.Resources.Client.ClientResources.resources
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\Data\obj\Debug\Data.csproj.GenerateResource.Cache

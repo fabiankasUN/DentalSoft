@@ -21,6 +21,7 @@ namespace DentalSoft.Controllers
 
         public AccountController()
         {
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )

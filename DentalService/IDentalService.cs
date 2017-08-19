@@ -28,7 +28,7 @@ namespace DentalService {
         List<UserVM> GetUsersClient( int id_client );
 
         [OperationContract]
-        List<UserVM> GetUsers( bool active );
+        List<UserVM> GetUsers( int id_client, bool active );
         #endregion
 
         #region Clients
@@ -43,6 +43,8 @@ namespace DentalService {
 
         [OperationContract]
         List<ClientVM> GetClients( bool active );
+
+
         #endregion
 
         #region Patients
@@ -66,6 +68,14 @@ namespace DentalService {
         #region OdontogramAction
         [OperationContract]
         List<OdontogramActionVM> GetOdontogramActions( );
+
+        #endregion
+
+        #region OdontogramTreatment
+        [OperationContract]
+        List<OdontogramTreatmentVM> GetOdontogramTreatments( );
+
+        
         #endregion
 
         #region Service

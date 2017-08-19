@@ -1,0 +1,11 @@
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\bin\DentalService.dll.config
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\bin\DentalService.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\bin\DentalService.pdb
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\obj\Debug\DentalService.csprojResolveAssemblyReference.cache
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\obj\Debug\DentalService.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\obj\Debug\DentalService.pdb
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\bin\Data.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\bin\ViewModels.dll
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\bin\Data.pdb
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\bin\ViewModels.pdb
+C:\RepositoryClinicSoftware\DentalSoft\DentalSoft\DentalService\bin\EntityFramework.xml

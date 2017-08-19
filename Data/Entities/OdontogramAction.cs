@@ -18,5 +18,6 @@ namespace Data.Entities
         public string Code { get; set; }
         public string Name { get; set; }
         public string shorcut { get; set; }
+        public Nullable<int> type { get; set; }
     }
 }

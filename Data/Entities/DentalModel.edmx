@@ -15,6 +15,21 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id_action" />
+          </Key>
+          <Property Name="Id_action" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActionOperation">
+          <Key>
+            <PropertyRef Name="Id_action" />
+            <PropertyRef Name="id_operation" />
+          </Key>
+          <Property Name="Id_action" Type="int" Nullable="false" />
+          <Property Name="id_operation" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Appointment">
           <Key>
             <PropertyRef Name="Id_Appointment" />
@@ -99,6 +114,23 @@
           <Property Name="Id_Client" Type="int" Nullable="false" />
           <Property Name="Id_Service" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id_module" />
+          </Key>
+          <Property Name="Id_module" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsMenuOption" Type="bit" Nullable="false" />
+          <Property Name="MenuOrder" Type="int" Nullable="false" />
+          <Property Name="Id_moduleType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModuleType">
+          <Key>
+            <PropertyRef Name="Id_moduleType" />
+          </Key>
+          <Property Name="Id_moduleType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Odontogram">
           <Key>
             <PropertyRef Name="Id_Odontogram" />
@@ -115,7 +147,25 @@
           <Property Name="Id_action" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="shorcut" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="shorcut" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="type" Type="int" />
+        </EntityType>
+        <EntityType Name="OdontogramTreatment">
+          <Key>
+            <PropertyRef Name="Id_Treatment" />
+          </Key>
+          <Property Name="Id_Treatment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="int" />
+        </EntityType>
+        <EntityType Name="Operation">
+          <Key>
+            <PropertyRef Name="Id_operation" />
+          </Key>
+          <Property Name="Id_operation" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_module" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Patient">
           <Key>
@@ -138,6 +188,21 @@
           <Property Name="Mail" Type="nvarchar" MaxLength="50" />
           <Property Name="SocialSecurity" Type="nvarchar" MaxLength="1" />
           <Property Name="Eps" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id_rol" />
+          </Key>
+          <Property Name="Id_rol" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolModule">
+          <Key>
+            <PropertyRef Name="Id_rol" />
+            <PropertyRef Name="Id_module" />
+          </Key>
+          <Property Name="Id_rol" Type="int" Nullable="false" />
+          <Property Name="Id_module" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -183,6 +248,16 @@
           <Property Name="LowerServical" Type="int" />
           <Property Name="General" Type="int" />
         </EntityType>
+        <EntityType Name="TeethTreatment">
+          <Key>
+            <PropertyRef Name="Id_Teeth" />
+            <PropertyRef Name="Id_Odontogram" />
+            <PropertyRef Name="Id_Treatment" />
+          </Key>
+          <Property Name="Id_Teeth" Type="int" Nullable="false" />
+          <Property Name="Id_Odontogram" Type="int" Nullable="false" />
+          <Property Name="Id_Treatment" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id_user" />
@@ -199,6 +274,7 @@
           <Property Name="Mail" Type="nvarchar" MaxLength="100" />
           <Property Name="Occupation" Type="nvarchar" MaxLength="100" />
           <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id_rol" Type="int" />
         </EntityType>
         <EntityType Name="UserClient">
           <Key>
@@ -229,6 +305,30 @@
             </Principal>
             <Dependent Role="Teeth">
               <PropertyRef Name="Id_Odontogram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActionOperation_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="1" />
+          <End Role="ActionOperation" Type="Self.ActionOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="Id_action" />
+            </Principal>
+            <Dependent Role="ActionOperation">
+              <PropertyRef Name="Id_action" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActionOperation_Operation">
+          <End Role="Operation" Type="Self.Operation" Multiplicity="1" />
+          <End Role="ActionOperation" Type="Self.ActionOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operation">
+              <PropertyRef Name="Id_operation" />
+            </Principal>
+            <Dependent Role="ActionOperation">
+              <PropertyRef Name="id_operation" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -360,6 +460,80 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Module_ModuleType">
+          <End Role="ModuleType" Type="Self.ModuleType" Multiplicity="1" />
+          <End Role="Module" Type="Self.Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModuleType">
+              <PropertyRef Name="Id_moduleType" />
+            </Principal>
+            <Dependent Role="Module">
+              <PropertyRef Name="Id_moduleType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_Module">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id_module" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="Id_module" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModule_Module">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="RolModule" Type="Self.RolModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id_module" />
+            </Principal>
+            <Dependent Role="RolModule">
+              <PropertyRef Name="Id_module" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModule_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="RolModule" Type="Self.RolModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id_rol" />
+            </Principal>
+            <Dependent Role="RolModule">
+              <PropertyRef Name="Id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeethTreatment_OdontogramTreatment">
+          <End Role="OdontogramTreatment" Type="Self.OdontogramTreatment" Multiplicity="1" />
+          <End Role="TeethTreatment" Type="Self.TeethTreatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdontogramTreatment">
+              <PropertyRef Name="Id_Treatment" />
+            </Principal>
+            <Dependent Role="TeethTreatment">
+              <PropertyRef Name="Id_Treatment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeethTreatment_Teeth">
+          <End Role="Teeth" Type="Self.Teeth" Multiplicity="1" />
+          <End Role="TeethTreatment" Type="Self.TeethTreatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teeth">
+              <PropertyRef Name="Id_Odontogram" />
+              <PropertyRef Name="Id_Teeth" />
+            </Principal>
+            <Dependent Role="TeethTreatment">
+              <PropertyRef Name="Id_Odontogram" />
+              <PropertyRef Name="Id_Teeth" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -369,6 +543,18 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="Id_AspNetUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id_rol" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Id_rol" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -429,6 +615,8 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="dbdentalsoftModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActionOperation" EntityType="Self.ActionOperation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -438,13 +626,20 @@
           <EntitySet Name="Billing" EntityType="Self.Billing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientService" EntityType="Self.ClientService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModuleType" EntityType="Self.ModuleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Odontogram" EntityType="Self.Odontogram" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OdontogramAction" EntityType="Self.OdontogramAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OdontogramTreatment" EntityType="Self.OdontogramTreatment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operation" EntityType="Self.Operation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolModule" EntityType="Self.RolModule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateAppointment" EntityType="Self.StateAppointment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teeth" EntityType="Self.Teeth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeethTreatment" EntityType="Self.TeethTreatment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserClient" EntityType="Self.UserClient" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Odontogra__Fk_Id__403A8C7D" Association="Self.FK__Odontogra__Fk_Id__403A8C7D">
@@ -454,6 +649,14 @@
           <AssociationSet Name="FK__Teeth__Id_Odonto__49C3F6B7" Association="Self.FK__Teeth__Id_Odonto__49C3F6B7">
             <End Role="Odontogram" EntitySet="Odontogram" />
             <End Role="Teeth" EntitySet="Teeth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActionOperation_Action" Association="Self.FK_ActionOperation_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="ActionOperation" EntitySet="ActionOperation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActionOperation_Operation" Association="Self.FK_ActionOperation_Operation">
+            <End Role="Operation" EntitySet="Operation" />
+            <End Role="ActionOperation" EntitySet="ActionOperation" />
           </AssociationSet>
           <AssociationSet Name="FK_Appointment_Patient" Association="Self.FK_Appointment_Patient">
             <End Role="Patient" EntitySet="Patient" />
@@ -495,8 +698,36 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Module_ModuleType" Association="Self.FK_Module_ModuleType">
+            <End Role="ModuleType" EntitySet="ModuleType" />
+            <End Role="Module" EntitySet="Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_Module" Association="Self.FK_Operation_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModule_Module" Association="Self.FK_RolModule_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="RolModule" EntitySet="RolModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModule_Rol" Association="Self.FK_RolModule_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="RolModule" EntitySet="RolModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeethTreatment_OdontogramTreatment" Association="Self.FK_TeethTreatment_OdontogramTreatment">
+            <End Role="OdontogramTreatment" EntitySet="OdontogramTreatment" />
+            <End Role="TeethTreatment" EntitySet="TeethTreatment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeethTreatment_Teeth" Association="Self.FK_TeethTreatment_Teeth">
+            <End Role="Teeth" EntitySet="Teeth" />
+            <End Role="TeethTreatment" EntitySet="TeethTreatment" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_AspNetUsers" Association="Self.FK_User_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Rol" Association="Self.FK_User_Rol">
+            <End Role="Rol" EntitySet="Rol" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_UserClient_Client" Association="Self.FK_UserClient_Client">
@@ -621,7 +852,8 @@
           <Property Name="Id_action" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="shorcut" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shorcut" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="Int32" />
         </EntityType>
         <EntityType Name="Patient">
           <Key>
@@ -694,6 +926,7 @@
           <Property Name="LowerServical" Type="Int32" />
           <Property Name="General" Type="Int32" />
           <NavigationProperty Name="Odontogram" Relationship="Self.FK__Teeth__Id_Odonto__49C3F6B7" FromRole="Teeth" ToRole="Odontogram" />
+          <NavigationProperty Name="OdontogramTreatment" Relationship="dbdentalsoftModel.TeethTreatment" FromRole="Teeth" ToRole="OdontogramTreatment" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -714,6 +947,8 @@
           <NavigationProperty Name="Appointment" Relationship="Self.FK_Appointment_User" FromRole="User" ToRole="Appointment" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_User_AspNetUsers" FromRole="User" ToRole="AspNetUsers" />
           <NavigationProperty Name="Client" Relationship="Self.UserClient" FromRole="User" ToRole="Client" />
+          <Property Name="Id_rol" Type="Int32" />
+          <NavigationProperty Name="Rol" Relationship="dbdentalsoftModel.FK_User_Rol" FromRole="User" ToRole="Rol" />
         </EntityType>
         <Association Name="FK_Appointment_Patient">
           <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
@@ -934,6 +1169,36 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="OdontogramTreatment" EntityType="dbdentalsoftModel.OdontogramTreatment" />
+          <AssociationSet Name="TeethTreatment" Association="dbdentalsoftModel.TeethTreatment">
+            <End Role="OdontogramTreatment" EntitySet="OdontogramTreatment" />
+            <End Role="Teeth" EntitySet="Teeth" />
+          </AssociationSet>
+          <EntitySet Name="Action" EntityType="dbdentalsoftModel.Action" />
+          <EntitySet Name="Module" EntityType="dbdentalsoftModel.Module" />
+          <EntitySet Name="ModuleType" EntityType="dbdentalsoftModel.ModuleType" />
+          <EntitySet Name="Operation" EntityType="dbdentalsoftModel.Operation" />
+          <EntitySet Name="Rol" EntityType="dbdentalsoftModel.Rol" />
+          <AssociationSet Name="FK_Module_ModuleType" Association="dbdentalsoftModel.FK_Module_ModuleType">
+            <End Role="ModuleType" EntitySet="ModuleType" />
+            <End Role="Module" EntitySet="Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_Module" Association="dbdentalsoftModel.FK_Operation_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="ActionOperation" Association="dbdentalsoftModel.ActionOperation">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="RolModule" Association="dbdentalsoftModel.RolModule">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Rol" EntitySet="Rol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Rol" Association="dbdentalsoftModel.FK_User_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -946,6 +1211,112 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="OdontogramTreatment">
+          <Key>
+            <PropertyRef Name="Id_Treatment" />
+          </Key>
+          <Property Name="Id_Treatment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int32" />
+          <NavigationProperty Name="Teeth" Relationship="dbdentalsoftModel.TeethTreatment" FromRole="OdontogramTreatment" ToRole="Teeth" />
+        </EntityType>
+        <Association Name="TeethTreatment">
+          <End Type="dbdentalsoftModel.OdontogramTreatment" Role="OdontogramTreatment" Multiplicity="*" />
+          <End Type="dbdentalsoftModel.Teeth" Role="Teeth" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id_action" />
+          </Key>
+          <Property Name="Id_action" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Operation" Relationship="dbdentalsoftModel.ActionOperation" FromRole="Action" ToRole="Operation" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id_module" />
+          </Key>
+          <Property Name="Id_module" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsMenuOption" Type="Boolean" Nullable="false" />
+          <Property Name="MenuOrder" Type="Int32" Nullable="false" />
+          <Property Name="Id_moduleType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ModuleType" Relationship="dbdentalsoftModel.FK_Module_ModuleType" FromRole="Module" ToRole="ModuleType" />
+          <NavigationProperty Name="Operation" Relationship="dbdentalsoftModel.FK_Operation_Module" FromRole="Module" ToRole="Operation" />
+          <NavigationProperty Name="Rol" Relationship="dbdentalsoftModel.RolModule" FromRole="Module" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="ModuleType">
+          <Key>
+            <PropertyRef Name="Id_moduleType" />
+          </Key>
+          <Property Name="Id_moduleType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Module" Relationship="dbdentalsoftModel.FK_Module_ModuleType" FromRole="ModuleType" ToRole="Module" />
+        </EntityType>
+        <EntityType Name="Operation">
+          <Key>
+            <PropertyRef Name="Id_operation" />
+          </Key>
+          <Property Name="Id_operation" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id_module" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Module" Relationship="dbdentalsoftModel.FK_Operation_Module" FromRole="Operation" ToRole="Module" />
+          <NavigationProperty Name="Action" Relationship="dbdentalsoftModel.ActionOperation" FromRole="Operation" ToRole="Action" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id_rol" />
+          </Key>
+          <Property Name="Id_rol" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Module" Relationship="dbdentalsoftModel.RolModule" FromRole="Rol" ToRole="Module" />
+          <NavigationProperty Name="User" Relationship="dbdentalsoftModel.FK_User_Rol" FromRole="Rol" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Module_ModuleType">
+          <End Type="dbdentalsoftModel.ModuleType" Role="ModuleType" Multiplicity="1" />
+          <End Type="dbdentalsoftModel.Module" Role="Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModuleType">
+              <PropertyRef Name="Id_moduleType" />
+            </Principal>
+            <Dependent Role="Module">
+              <PropertyRef Name="Id_moduleType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_Module">
+          <End Type="dbdentalsoftModel.Module" Role="Module" Multiplicity="1" />
+          <End Type="dbdentalsoftModel.Operation" Role="Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id_module" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="Id_module" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ActionOperation">
+          <End Type="dbdentalsoftModel.Action" Role="Action" Multiplicity="*" />
+          <End Type="dbdentalsoftModel.Operation" Role="Operation" Multiplicity="*" />
+        </Association>
+        <Association Name="RolModule">
+          <End Type="dbdentalsoftModel.Module" Role="Module" Multiplicity="*" />
+          <End Type="dbdentalsoftModel.Rol" Role="Rol" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_User_Rol">
+          <End Type="dbdentalsoftModel.Rol" Role="Rol" Multiplicity="0..1" />
+          <End Type="dbdentalsoftModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id_rol" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1048,6 +1419,7 @@
           <EntitySetMapping Name="OdontogramAction">
             <EntityTypeMapping TypeName="dbdentalsoftModel.OdontogramAction">
               <MappingFragment StoreEntitySet="OdontogramAction">
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="Id_action" ColumnName="Id_action" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1128,6 +1500,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="dbdentalsoftModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id_rol" ColumnName="Id_rol" />
                 <ScalarProperty Name="Id_user" ColumnName="Id_user" />
                 <ScalarProperty Name="Id_AspNetUser" ColumnName="Id_AspNetUser" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
@@ -1191,6 +1564,85 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="dbdentalsoftModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="dbdentalsoftModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="OdontogramTreatment">
+            <EntityTypeMapping TypeName="dbdentalsoftModel.OdontogramTreatment">
+              <MappingFragment StoreEntitySet="OdontogramTreatment">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id_Treatment" ColumnName="Id_Treatment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TeethTreatment" TypeName="dbdentalsoftModel.TeethTreatment" StoreEntitySet="TeethTreatment">
+            <EndProperty Name="Teeth">
+              <ScalarProperty Name="Id_Odontogram" ColumnName="Id_Odontogram" />
+              <ScalarProperty Name="Id_Teeth" ColumnName="Id_Teeth" />
+            </EndProperty>
+            <EndProperty Name="OdontogramTreatment">
+              <ScalarProperty Name="Id_Treatment" ColumnName="Id_Treatment" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Action">
+            <EntityTypeMapping TypeName="dbdentalsoftModel.Action">
+              <MappingFragment StoreEntitySet="Action">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_action" ColumnName="Id_action" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Module">
+            <EntityTypeMapping TypeName="dbdentalsoftModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="Id_moduleType" ColumnName="Id_moduleType" />
+                <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+                <ScalarProperty Name="IsMenuOption" ColumnName="IsMenuOption" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_module" ColumnName="Id_module" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleType">
+            <EntityTypeMapping TypeName="dbdentalsoftModel.ModuleType">
+              <MappingFragment StoreEntitySet="ModuleType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_moduleType" ColumnName="Id_moduleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operation">
+            <EntityTypeMapping TypeName="dbdentalsoftModel.Operation">
+              <MappingFragment StoreEntitySet="Operation">
+                <ScalarProperty Name="Id_module" ColumnName="Id_module" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_operation" ColumnName="Id_operation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="dbdentalsoftModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_rol" ColumnName="Id_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ActionOperation" TypeName="dbdentalsoftModel.ActionOperation" StoreEntitySet="ActionOperation">
+            <EndProperty Name="Operation">
+              <ScalarProperty Name="Id_operation" ColumnName="id_operation" />
+            </EndProperty>
+            <EndProperty Name="Action">
+              <ScalarProperty Name="Id_action" ColumnName="Id_action" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RolModule" TypeName="dbdentalsoftModel.RolModule" StoreEntitySet="RolModule">
+            <EndProperty Name="Rol">
+              <ScalarProperty Name="Id_rol" ColumnName="Id_rol" />
+            </EndProperty>
+            <EndProperty Name="Module">
+              <ScalarProperty Name="Id_module" ColumnName="Id_module" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

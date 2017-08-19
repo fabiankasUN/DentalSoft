@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbdentalsoftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Action">
+    <Key>
+      <PropertyRef Name="Id_action" />
+    </Key>
+    <Property Name="Id_action" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActionOperation">
+    <Key>
+      <PropertyRef Name="Id_action" />
+      <PropertyRef Name="id_operation" />
+    </Key>
+    <Property Name="Id_action" Type="int" Nullable="false" />
+    <Property Name="id_operation" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="Id_Appointment" />
+    </Key>
+    <Property Name="Id_Appointment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_patient" Type="int" Nullable="false" />
+    <Property Name="Id_service" Type="int" Nullable="false" />
+    <Property Name="Id_User" Type="int" Nullable="false" />
+    <Property Name="Id_state" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Billing">
+    <Key>
+      <PropertyRef Name="Id_billing" />
+    </Key>
+    <Property Name="Id_billing" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id_Client" />
+    </Key>
+    <Property Name="Id_Client" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientService">
+    <Key>
+      <PropertyRef Name="Id_Client" />
+      <PropertyRef Name="Id_Service" />
+    </Key>
+    <Property Name="Id_Client" Type="int" Nullable="false" />
+    <Property Name="Id_Service" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="Id_module" />
+    </Key>
+    <Property Name="Id_module" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsMenuOption" Type="bit" Nullable="false" />
+    <Property Name="MenuOrder" Type="int" Nullable="false" />
+    <Property Name="Id_moduleType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModuleType">
+    <Key>
+      <PropertyRef Name="Id_moduleType" />
+    </Key>
+    <Property Name="Id_moduleType" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Odontogram">
+    <Key>
+      <PropertyRef Name="Id_Odontogram" />
+    </Key>
+    <Property Name="Id_Odontogram" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_patient" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="date" Nullable="false" />
+    <Property Name="first" Type="bit" />
+  </EntityType>
+  <EntityType Name="OdontogramAction">
+    <Key>
+      <PropertyRef Name="Id_action" />
+    </Key>
+    <Property Name="Id_action" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="shorcut" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="type" Type="int" />
+  </EntityType>
+  <EntityType Name="OdontogramTreatment">
+    <Key>
+      <PropertyRef Name="Id_Treatment" />
+    </Key>
+    <Property Name="Id_Treatment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="int" />
+  </EntityType>
+  <EntityType Name="Operation">
+    <Key>
+      <PropertyRef Name="Id_operation" />
+    </Key>
+    <Property Name="Id_operation" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id_module" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id_patient" />
+    </Key>
+    <Property Name="Id_patient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentType" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SecondName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SecondSurname" Type="nvarchar" MaxLength="100" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Occupation" Type="nvarchar" MaxLength="100" />
+    <Property Name="CivilState" Type="nvarchar" MaxLength="1" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="Cellphone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="SocialSecurity" Type="nvarchar" MaxLength="1" />
+    <Property Name="Eps" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id_rol" />
+    </Key>
+    <Property Name="Id_rol" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolModule">
+    <Key>
+      <PropertyRef Name="Id_rol" />
+      <PropertyRef Name="Id_module" />
+    </Key>
+    <Property Name="Id_rol" Type="int" Nullable="false" />
+    <Property Name="Id_module" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id_service" />
+    </Key>
+    <Property Name="Id_service" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_Appointment" Type="int" />
+  </EntityType>
+  <EntityType Name="StateAppointment">
+    <Key>
+      <PropertyRef Name="Id_state" />
+    </Key>
+    <Property Name="Id_state" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Teeth">
+    <Key>
+      <PropertyRef Name="Id_Teeth" />
+      <PropertyRef Name="Id_Odontogram" />
+    </Key>
+    <Property Name="Id_Teeth" Type="int" Nullable="false" />
+    <Property Name="Id_Odontogram" Type="int" Nullable="false" />
+    <Property Name="UpperCervical" Type="int" />
+    <Property Name="Vestibular" Type="int" />
+    <Property Name="Oclusal" Type="int" />
+    <Property Name="Palatino" Type="int" />
+    <Property Name="Distal" Type="int" />
+    <Property Name="Mesial" Type="int" />
+    <Property Name="LowerServical" Type="int" />
+    <Property Name="General" Type="int" />
+  </EntityType>
+  <EntityType Name="TeethTreatment">
+    <Key>
+      <PropertyRef Name="Id_Teeth" />
+      <PropertyRef Name="Id_Odontogram" />
+      <PropertyRef Name="Id_Treatment" />
+    </Key>
+    <Property Name="Id_Teeth" Type="int" Nullable="false" />
+    <Property Name="Id_Odontogram" Type="int" Nullable="false" />
+    <Property Name="Id_Treatment" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_AspNetUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="100" />
+    <Property Name="Occupation" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_rol" Type="int" />
+  </EntityType>
+  <EntityType Name="UserClient">
+    <Key>
+      <PropertyRef Name="Id_user" />
+      <PropertyRef Name="Id_Client" />
+    </Key>
+    <Property Name="Id_user" Type="int" Nullable="false" />
+    <Property Name="Id_Client" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Odontogra__Fk_Id__403A8C7D">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Odontogram" Type="Self.Odontogram" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id_patient" />
+      </Principal>
+      <Dependent Role="Odontogram">
+        <PropertyRef Name="Id_patient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Teeth__Id_Odonto__49C3F6B7">
+    <End Role="Odontogram" Type="Self.Odontogram" Multiplicity="1" />
+    <End Role="Teeth" Type="Self.Teeth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Odontogram">
+        <PropertyRef Name="Id_Odontogram" />
+      </Principal>
+      <Dependent Role="Teeth">
+        <PropertyRef Name="Id_Odontogram" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionOperation_Action">
+    <End Role="Action" Type="Self.Action" Multiplicity="1" />
+    <End Role="ActionOperation" Type="Self.ActionOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Action">
+        <PropertyRef Name="Id_action" />
+      </Principal>
+      <Dependent Role="ActionOperation">
+        <PropertyRef Name="Id_action" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionOperation_Operation">
+    <End Role="Operation" Type="Self.Operation" Multiplicity="1" />
+    <End Role="ActionOperation" Type="Self.ActionOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operation">
+        <PropertyRef Name="Id_operation" />
+      </Principal>
+      <Dependent Role="ActionOperation">
+        <PropertyRef Name="id_operation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id_patient" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Id_patient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id_service" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Id_service" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_StateAppointment">
+    <End Role="StateAppointment" Type="Self.StateAppointment" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateAppointment">
+        <PropertyRef Name="Id_state" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Id_state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientService_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="ClientService" Type="Self.ClientService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id_Client" />
+      </Principal>
+      <Dependent Role="ClientService">
+        <PropertyRef Name="Id_Client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientService_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="ClientService" Type="Self.ClientService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id_service" />
+      </Principal>
+      <Dependent Role="ClientService">
+        <PropertyRef Name="Id_Service" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_ModuleType">
+    <End Role="ModuleType" Type="Self.ModuleType" Multiplicity="1" />
+    <End Role="Module" Type="Self.Module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleType">
+        <PropertyRef Name="Id_moduleType" />
+      </Principal>
+      <Dependent Role="Module">
+        <PropertyRef Name="Id_moduleType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Operation_Module">
+    <End Role="Module" Type="Self.Module" Multiplicity="1" />
+    <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="Id_module" />
+      </Principal>
+      <Dependent Role="Operation">
+        <PropertyRef Name="Id_module" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolModule_Module">
+    <End Role="Module" Type="Self.Module" Multiplicity="1" />
+    <End Role="RolModule" Type="Self.RolModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="Id_module" />
+      </Principal>
+      <Dependent Role="RolModule">
+        <PropertyRef Name="Id_module" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolModule_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="RolModule" Type="Self.RolModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id_rol" />
+      </Principal>
+      <Dependent Role="RolModule">
+        <PropertyRef Name="Id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeethTreatment_OdontogramTreatment">
+    <End Role="OdontogramTreatment" Type="Self.OdontogramTreatment" Multiplicity="1" />
+    <End Role="TeethTreatment" Type="Self.TeethTreatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OdontogramTreatment">
+        <PropertyRef Name="Id_Treatment" />
+      </Principal>
+      <Dependent Role="TeethTreatment">
+        <PropertyRef Name="Id_Treatment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeethTreatment_Teeth">
+    <End Role="Teeth" Type="Self.Teeth" Multiplicity="1" />
+    <End Role="TeethTreatment" Type="Self.TeethTreatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teeth">
+        <PropertyRef Name="Id_Odontogram" />
+        <PropertyRef Name="Id_Teeth" />
+      </Principal>
+      <Dependent Role="TeethTreatment">
+        <PropertyRef Name="Id_Odontogram" />
+        <PropertyRef Name="Id_Teeth" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Id_AspNetUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id_rol" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserClient_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="UserClient" Type="Self.UserClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id_Client" />
+      </Principal>
+      <Dependent Role="UserClient">
+        <PropertyRef Name="Id_Client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserClient_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserClient" Type="Self.UserClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="UserClient">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="dbdentalsoftModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActionOperation" EntityType="Self.ActionOperation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Billing" EntityType="Self.Billing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientService" EntityType="Self.ClientService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleType" EntityType="Self.ModuleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Odontogram" EntityType="Self.Odontogram" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OdontogramAction" EntityType="Self.OdontogramAction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OdontogramTreatment" EntityType="Self.OdontogramTreatment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operation" EntityType="Self.Operation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolModule" EntityType="Self.RolModule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateAppointment" EntityType="Self.StateAppointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teeth" EntityType="Self.Teeth" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeethTreatment" EntityType="Self.TeethTreatment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserClient" EntityType="Self.UserClient" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Odontogra__Fk_Id__403A8C7D" Association="Self.FK__Odontogra__Fk_Id__403A8C7D">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Odontogram" EntitySet="Odontogram" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Teeth__Id_Odonto__49C3F6B7" Association="Self.FK__Teeth__Id_Odonto__49C3F6B7">
+      <End Role="Odontogram" EntitySet="Odontogram" />
+      <End Role="Teeth" EntitySet="Teeth" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionOperation_Action" Association="Self.FK_ActionOperation_Action">
+      <End Role="Action" EntitySet="Action" />
+      <End Role="ActionOperation" EntitySet="ActionOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionOperation_Operation" Association="Self.FK_ActionOperation_Operation">
+      <End Role="Operation" EntitySet="Operation" />
+      <End Role="ActionOperation" EntitySet="ActionOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Patient" Association="Self.FK_Appointment_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Service" Association="Self.FK_Appointment_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_StateAppointment" Association="Self.FK_Appointment_StateAppointment">
+      <End Role="StateAppointment" EntitySet="StateAppointment" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_User" Association="Self.FK_Appointment_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientService_Client" Association="Self.FK_ClientService_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientService" EntitySet="ClientService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientService_Service" Association="Self.FK_ClientService_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ClientService" EntitySet="ClientService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_ModuleType" Association="Self.FK_Module_ModuleType">
+      <End Role="ModuleType" EntitySet="ModuleType" />
+      <End Role="Module" EntitySet="Module" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Operation_Module" Association="Self.FK_Operation_Module">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="Operation" EntitySet="Operation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolModule_Module" Association="Self.FK_RolModule_Module">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="RolModule" EntitySet="RolModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolModule_Rol" Association="Self.FK_RolModule_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolModule" EntitySet="RolModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeethTreatment_OdontogramTreatment" Association="Self.FK_TeethTreatment_OdontogramTreatment">
+      <End Role="OdontogramTreatment" EntitySet="OdontogramTreatment" />
+      <End Role="TeethTreatment" EntitySet="TeethTreatment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeethTreatment_Teeth" Association="Self.FK_TeethTreatment_Teeth">
+      <End Role="Teeth" EntitySet="Teeth" />
+      <End Role="TeethTreatment" EntitySet="TeethTreatment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_AspNetUsers" Association="Self.FK_User_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Rol" Association="Self.FK_User_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserClient_Client" Association="Self.FK_UserClient_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="UserClient" EntitySet="UserClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserClient_User" Association="Self.FK_UserClient_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserClient" EntitySet="UserClient" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
